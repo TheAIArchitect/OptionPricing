@@ -185,7 +185,8 @@ class OptionChain:
         #lastDt = oc.expiries[-1]  # get the expiry of the last contract
         #marketCalendar.createSchedule(scheduleStartDatetimeTz=now, scheduleEndDatetimeTz=lastDt)
         #nextOpenDt, _, _ = marketCalendar.getNextOpenAfter(now)
-        now = datetime.now().date()
+        #now = datetime.now().date() # Note: Can't use now() if we aren't using data collected on the same day (or weekend)
+        now = expiryStrToDate("20211211") # easy format to convert to a date. Note: change this for new data.
         for expiry in me.expiriesDates:
             timedeltaToExpiry = expiry - now
             me.daysToExpiryList.append(timedeltaToExpiry.days)
